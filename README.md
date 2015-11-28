@@ -1,0 +1,2 @@
+# flaresync
+FlareSync for Cloudflare
