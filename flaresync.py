@@ -9,6 +9,7 @@ import json
 import urllib
 import re
 import ipgetter
+import sys, getopt
 
 class FlareSync(object):
     def __init__(self, ac, key, domain, host):
@@ -48,3 +49,50 @@ class FlareSync(object):
         data = response.read().decode('utf-8')
         data = json.loads(data)
         return data
+
+def main(argv):
+    global mArg
+    global kArg
+    global dArg
+    global nArg
+
+    try:
+        opt, args = getopt.getopt(argv, "h:m:k:d:n:", ["help", "mail=", "key=", "domain=", "name="])
+    except getopt.GetoptError:
+        usage()
+        sys.exit(2)
+
+    for o, a in opt:
+        if o in ("-h", "--help"):
+            usage()
+            sys.exit()
+        elif o in ("-m", "--mail"):
+            mArg = a
+        elif o in ("-k", "--key"):
+            kArg = a
+        elif o in ("-d", "--domain"):
+            dArg = a
+        elif o in ("-n", "--name"):
+            nArg = a
+        else:
+            assert False, "unhandled option"
+
+        try:
+            cloud = FlareSync(mArg, kArg, dArg, nArg)
+            cloud.checkIP()
+        except:
+            print "A error ocurred. Try -h to help"
+            sys.exit(2)
+
+def usage():
+    usage = """
+    -h --help                 Help commands
+    -m --mail (arg)           Your cloudflare mail account
+    -k --key  (arg)           Your secret key
+    -d --domain (arg)         The domain record
+    -n --name (arg)           The DNS Record name
+    """
+    print usage
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
