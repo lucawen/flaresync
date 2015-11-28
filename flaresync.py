@@ -23,10 +23,9 @@ class FlareSync(object):
         }
 
     def checkIP(self):
-        address = ipgetter.myip()
-        addressNow = self.getContent("content")
-        if address != addressNow:
-            addressNow = address
+        addressServer = ipgetter.myip()
+        addressCF = self.getContent("content")
+        if addressCF != addressServer:
             self.editIP(address)
             print "IP Mudado!!!!!"
 
