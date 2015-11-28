@@ -32,7 +32,7 @@ class FlareSync(object):
 
     def getContent(self, content):
         rec_load_all = self.Call( "a=%s&email=%s&tkn=%s&z=%s&o=%s" % ( 'rec_load_all', self.ac, self.key, self.domain, 0) )
-        lists_dns = rec_load_all(self.domain)['response']['recs']['objs']
+        lists_dns = rec_load_all['response']['recs']['objs']
         for dnsrec in lists_dns:
             if self.host == dnsrec['display_name']:
                 return dnsrec[content]
