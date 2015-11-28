@@ -26,7 +26,7 @@ class FlareSync(object):
         addressServer = ipgetter.myip()
         addressCF = self.getContent("content")
         if addressCF != addressServer:
-            self.editIP(address)
+            self.changeIP(addressServer)
             print "IP Mudado!!!!!"
 
     def getContent(self, content):
@@ -37,7 +37,7 @@ class FlareSync(object):
                 return dnsrec[content]
         return None
 
-    def editIP( self, content):
+    def changeIP( self, content):
         fmt = "a=rec_edit&tkn=%s&id=%s&email=%s&z=%s&type=A&name=%s&content=%s&ttl=1"
         return self.Call( fmt % (self.key, self.getContent("rec_id"), self.ac, self.domain, self.host, content))
 
