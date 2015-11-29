@@ -3,7 +3,7 @@
 
 Cloud Flare non-official client for dynamic ip.
 
-### Install/Develop
+### Required
 
 Required the lib ipgetter
 
@@ -22,6 +22,10 @@ $ python flaresync.py -m mail@provider.com -k secret_key -d domain -n name_recor
 
 type -h for more infos
 
+### Future Features
+
+Daemon service
+Profiles for multiple accounts and records/zones
 
 License
 ----
