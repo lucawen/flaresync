@@ -24,8 +24,8 @@ type -h for more infos
 
 ### Future Features
 
-Daemon service
-Profiles for multiple accounts and records/zones
+- Daemon service
+- Profiles for multiple accounts and records/zones
 
 License
 ----
