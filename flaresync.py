@@ -8,8 +8,7 @@ except ImportError:
 import json
 import urllib
 import re
-import ipgetter
-import sys, getopt
+from requests import get
 
 class FlareSync(object):
     def __init__(self, ac, key, domain, host):
@@ -24,10 +23,11 @@ class FlareSync(object):
         }
 
     def checkIP(self):
-        addressServer = ipgetter.myip()
-        addressCF = self.getContent("content")
-        if addressCF != addressServer:
-            self.changeIP(addressServer)
+        address = get('https://api.ipify.org').text
+        addressNow = self.getContent("content")
+        if address != addressNow:
+            addressNow = address
+            self.changeIP(address)
             print "IP Mudado!!!!!"
 
     def getContent(self, content):
