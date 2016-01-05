@@ -8,6 +8,7 @@ except ImportError:
 import json
 import urllib
 import re
+import sys, getopt
 from requests import get
 
 class FlareSync(object):
@@ -51,11 +52,6 @@ class FlareSync(object):
         return data
 
 def main(argv):
-    global mArg
-    global kArg
-    global dArg
-    global nArg
-
     try:
         opt, args = getopt.getopt(argv, "h:m:k:d:n:", ["help", "mail=", "key=", "domain=", "name="])
     except getopt.GetoptError:
