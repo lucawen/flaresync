@@ -5,10 +5,10 @@ Cloud Flare non-official client for dynamic ip.
 
 ### Required
 
-Required the lib ipgetter
+Requests lib required
 
 ```sh
-$ pip install ipgetter
+$ pip install requests
 ```
 
 

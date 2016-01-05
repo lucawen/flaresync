@@ -24,12 +24,17 @@ class FlareSync(object):
         }
 
     def checkIP(self):
-        address = get('https://api.ipify.org').text
+        address = get('http://api.ipify.org').text
         addressNow = self.getContent("content")
         if address != addressNow:
-            addressNow = address
-            self.changeIP(address)
-            print "IP Mudado!!!!!"
+            if addressNow != None:
+                addressNow = address
+                self.changeIP(address)
+                print "IP Changed"
+            else:
+                print "Name Record not found."
+        else:
+            print "IP not changed"
 
     def getContent(self, content):
         rec_load_all = self.Call( "a=%s&email=%s&tkn=%s&z=%s&o=%s" % ( 'rec_load_all', self.ac, self.key, self.domain, 0) )
@@ -73,13 +78,12 @@ def main(argv):
         else:
             assert False, "unhandled option"
 
-        try:
-            cloud = FlareSync(mArg, kArg, dArg, nArg)
-            cloud.checkIP()
-        except:
-            print "A error ocurred. Try -h to help"
-            sys.exit(2)
-
+    try:
+        cloud = FlareSync(mArg, kArg, dArg, nArg)
+        cloud.checkIP()
+    except:
+        print "An error has occurred. Are you sure you enter the e-mail, key and correct domain? Type -h for help"
+        sys.exit(2)
 def usage():
     usage = """
     -h --help                 Help commands
